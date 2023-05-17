@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth !important;
+}
+.react-tabs__tab {
+  outline: none !important;
+  border: none !important;
+}
+
+.react-tabs__tab:focus {
+  outline: none !important;
+  border: none !important;
+}
