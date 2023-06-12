@@ -2,7 +2,7 @@ import { db } from "@/services/firebaseConnection";
 import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useRef, useState } from 'react';
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { A11y, Navigation, Pagination } from "swiper";
+import { Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -29,16 +29,16 @@ export default function Depoimentos() {
     return (
         <div className='relative h-fit' id="depoimentos">
 
-<Swiper
-                  slidesPerView={1}
-                  loop={true}
-                  centeredSlides={true}
-                  modules={[Navigation, Autoplay]}
-                  navigation={{
-                      prevEl: prevRef.current,
-                      nextEl: nextRef.current,
-                  }}
-                  onInit={() => setInit(true)}
+            <Swiper
+                slidesPerView={1}
+                loop={true}
+                centeredSlides={true}
+                modules={[Navigation]}
+                navigation={{
+                    prevEl: prevRef.current,
+                    nextEl: nextRef.current,
+                }}
+                onInit={() => setInit(true)}
                 className='mt-72 md:mt-52 md:h-1/4 h-fit'
             >
                 {depoimentos.map((item) => (
@@ -53,7 +53,7 @@ export default function Depoimentos() {
                         </div>
                         <div className='absolute top-0 w-full h-full md:text-base text-xs py-2'>
                             <div className='flex md:w-7/12 justify-between m-auto h-full'>
-                                <div className='flex flex-col md:w-1/2 w-9/12 m-auto gap-2 md:px-10 px-5 items-start h-full justify-center'>
+                                <div className='flex flex-col md:w-1/2 w-5/12 m-auto gap-2 md:px-10 px-5 items-start h-full justify-center'>
                                     <p className='text-[#670a0a] font-bold'>Depoimentos</p>
                                     <p className='font-extrabold md:text-2xl text-sm'>{item.nome}</p>
                                     <p className='mt-2 font-semibold md:text-base text-xs'>{item.comentario}</p>
@@ -97,6 +97,14 @@ export default function Depoimentos() {
                                         alt='home'
                                     />
                                 </div>
+                                <div className="md:hidden w-1/5 flex justify-start items-end">
+                                <img
+                                        src={item.imagem}
+                                        style={{ objectPosition: 'bottom', objectFit: 'contain' }}
+                                        className='h-fit bg-bg-arch rounded-full border-4 border-black'
+                                        alt='home'
+                                    /> 
+                                </div>
                             </div>
 
                         </div>
@@ -105,10 +113,10 @@ export default function Depoimentos() {
             </Swiper>
             <div className='absolute z-30  top-0 w-full h-full'>
                 <div className='md:w-9/12  m-auto h-full flex justify-between'>
-                    <div   className='flex z-20 items-center justify-center'>
+                    <div className='flex z-20 items-center justify-center'>
                         <button ref={prevRef} className=" cursor-pointer bg-bg-arch w-fit h-fit p-4 rounded-full"> <FaArrowLeft size={18} /></button>
                     </div>
-                    <div    className='cursor-pointer z-20 flex items-center justify-center'>
+                    <div className='cursor-pointer z-20 flex items-center justify-center'>
                         <button ref={nextRef} className=" cursor-pointer bg-bg-arch w-fit h-fit p-4 rounded-full"> <FaArrowRight size={18} /></button>
                     </div>
                 </div>
