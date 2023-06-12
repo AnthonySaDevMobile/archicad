@@ -24,6 +24,7 @@ export default function Parceiros() {
                             style={{ objectPosition: 'bottom', objectFit: 'contain', }}
                             quality={100}
                             className="w-full h-full"
+                            alt='a'
                         />
                     </div>
                     <div className='pt-8 px-2 md:w-1/3 flex flex-col gap-3'>
@@ -41,6 +42,8 @@ export default function Parceiros() {
                             style={{ objectPosition: 'bottom', objectFit: 'contain', }}
                             quality={100}
                             className="w-full h-full"
+                            alt='a'
+
                         />
                     </div>
                     <div className='pt-8 px-2 md:w-1/3 flex flex-col gap-3'>
@@ -58,6 +61,8 @@ export default function Parceiros() {
                             style={{ objectPosition: 'bottom', objectFit: 'contain', }}
                             quality={100}
                             className="w-full h-full"
+                            alt='a'
+
                         />
                     </div>
                     <div className='pt-8 px-2 md:w-1/3 flex flex-col gap-3'>
@@ -75,6 +80,8 @@ export default function Parceiros() {
                             style={{ objectPosition: 'bottom', objectFit: 'contain', }}
                             quality={100}
                             className="w-full h-full"
+                            alt='a'
+
                         />
                     </div>
                     <div className='pt-8 px-2 md:w-1/3 flex flex-col gap-3'>
@@ -92,6 +99,8 @@ export default function Parceiros() {
                             style={{ objectPosition: 'bottom', objectFit: 'contain', }}
                             quality={100}
                             className="w-full h-full"
+                            alt='a'
+
                         />
                     </div>
                     <div className='pt-8 px-2 md:w-1/3 flex flex-col gap-3'>
@@ -109,6 +118,8 @@ export default function Parceiros() {
                             style={{ objectPosition: 'bottom', objectFit: 'contain', }}
                             quality={100}
                             className="w-full h-full"
+                            alt='a'
+
                         />
                     </div>
                     <div className='pt-8 px-2 md:w-1/3 flex flex-col gap-3'>
@@ -127,6 +138,8 @@ export default function Parceiros() {
                             style={{ objectPosition: 'bottom', objectFit: 'contain', }}
                             quality={100}
                             className="w-[50px] h-[50px]"
+                            alt='a'
+
                         />
                     </Tab>
                     <Tab>
@@ -135,6 +148,8 @@ export default function Parceiros() {
                             style={{ objectPosition: 'bottom', objectFit: 'contain', }}
                             quality={100}
                             className="w-[50px] h-[50px]"
+                            alt='a'
+
                         /></Tab>
                     <Tab>
                         <Image
@@ -142,6 +157,8 @@ export default function Parceiros() {
                             style={{ objectPosition: 'bottom', objectFit: 'contain', }}
                             quality={100}
                             className="w-[50px] h-[50px]"
+                            alt='a'
+
                         /></Tab>
                     <Tab>
                         <Image
@@ -149,6 +166,8 @@ export default function Parceiros() {
                             style={{ objectPosition: 'bottom', objectFit: 'contain', }}
                             quality={100}
                             className="w-[50px] h-[50px]"
+                            alt='a'
+
                         /></Tab>
                     <Tab>
                         <Image
@@ -156,6 +175,8 @@ export default function Parceiros() {
                             style={{ objectPosition: 'bottom', objectFit: 'contain', }}
                             quality={100}
                             className="w-[50px] h-[50px]"
+                            alt='a'
+
                         /></Tab>
                     <Tab>
                         <Image
@@ -163,6 +184,8 @@ export default function Parceiros() {
                             style={{ objectPosition: 'bottom', objectFit: 'contain', }}
                             quality={100}
                             className="w-[50px] h-[50px]"
+                            alt='a'
+
                         /></Tab>
                 </TabList>
             </Tabs>

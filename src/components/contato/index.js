@@ -22,7 +22,7 @@ export default function Contato() {
         <h1 className='font-extrabold text-2xl mt-10'>Contato</h1>
         <p className='text-zinc-400'>Entre em contato com nosco preenchendo o formulário abaixo:</p>
         <div className="w-9/12 mx-auto p-6">
-      <form onSubmit={handleSubmit} className="w-full m-auto">
+      <form onSubmit={handleSubmit} className="w-full m-auto py-10">
         <div className="grid grid-cols-1 md:grid-cols-3 md:gap-4 mb-4">
           <div className="mb-4 md:mb-0">
             <input

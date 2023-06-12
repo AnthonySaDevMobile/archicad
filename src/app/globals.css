@@ -20,3 +20,13 @@ html {
   outline: none !important;
   border: none !important;
 }
+
+.swiper-pagination-bullet{
+  background-color: black !important;
+}
+
+
+.swiper-pagination-bullet-active{
+  background-color: yellow !important;
+ 
+}

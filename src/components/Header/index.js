@@ -9,7 +9,7 @@ export default function Header() {
 
   return (
     <header
-      className="w-full top-0 py-10 text-white text-xs z-30 lg:tracking-widest items-center z-50 flex justify-between px-8 fixed"
+      className="w-full top-0 py-10 text-white text-xs lg:tracking-widest items-center z-50 flex justify-between px-8 fixed"
       style={{ background: "linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0))" }}
     >
 
@@ -25,22 +25,22 @@ export default function Header() {
           />
         </Link>
         <nav className=" hidden w-full md:flex items-center justify-end gap-10 text-base">
-          <Link className="link" href="/#lancamentos" scroll={false}>
+          <Link className="link" href="/#lancamento">
             <p className="hover:text-amber-500 hover:underline hover:underline-offset-4 transition ease-in delay-75 ">
               LANÇAMENTOS
             </p>
           </Link>
-          <Link className="link" href="/#sobre" scroll={false}>
+          <Link className="link" href="/#sobre" >
             <p className="hover:text-amber-500 hover:underline hover:underline-offset-4 transition ease-in delay-75 ">
               QUEM SOMOS
             </p>
           </Link>
-          <Link className="link" href="/#projetos" scroll={false}>
+          <Link className="link" href="/#projetos" >
             <p className="hover:text-amber-500 hover:underline hover:underline-offset-4 transition ease-in delay-75 ">
               PORTIFÓLIO
             </p>
           </Link>
-          <Link className="link" href="/#contatos" scroll={false}>
+          <Link className="link" href="/#contato" >
             <p className="hover:text-amber-500 hover:underline hover:underline-offset-4 transition ease-in delay-75 ">
               CONTATO
             </p>
@@ -48,7 +48,7 @@ export default function Header() {
         </nav>
       </div>
 
-      <section className="MOBILE-MENU flex  text-right md:hidden" scroll={false}>
+      <section className="MOBILE-MENU flex  text-right md:hidden" >
         <div
           className="space-y-2"
           onClick={() => setIsNavOpen((prev) => !prev)} // toggle isNavOpen state on click
@@ -77,27 +77,27 @@ export default function Header() {
             </svg>
           </div>
           <div className="MENU-LINK-MOBILE-OPEN flex flex-col font-extrabold items-center justify-between min-h-[250px]">
-            <Link onClick={() => setIsNavOpen(false)} href="/#home" scroll={false}>
+            <Link onClick={() => setIsNavOpen(false)} href="/#home" >
               <p className="hover:underline hover:underline-offset-4 transition ease-in delay-75 ">
                 HOME
               </p>
             </Link>
-            <Link onClick={() => setIsNavOpen(false)} href="/#sobre" scroll={false}>
+            <Link onClick={() => setIsNavOpen(false)} href="/#sobre" >
               <p className="hover:underline hover:underline-offset-4 transition ease-in delay-75 ">
                 QUEM SOMOS
               </p>
             </Link>
-            <Link onClick={() => setIsNavOpen(false)} href="/#projetos" scroll={false}>
+            <Link onClick={() => setIsNavOpen(false)} href="/#projetos" >
               <p className="hover:underline hover:underline-offset-4 transition ease-in delay-75 ">
                 PORTIFÓLIO
               </p>
             </Link>
-            <Link onClick={() => setIsNavOpen(false)} href="/#contato" scroll={false}>
+            <Link onClick={() => setIsNavOpen(false)} href="/#contato" >
               <p className="hover:underline hover:underline-offset-4 transition ease-in delay-75 ">
                 CONTATO
               </p>
             </Link>
-            <Link onClick={() => setIsNavOpen(false)} href="/#depoimentos" scroll={false} >
+            <Link onClick={() => setIsNavOpen(false)} href="/#depoimentos"  >
               <p className="hover:underline hover:underline-offset-4 transition ease-in delay-75 ">
                 DEPOIMENTOS
               </p>
@@ -105,6 +105,7 @@ export default function Header() {
           </div>
         </div>
       </section>
+     
       <style>{`
       .hideMenuNav {
         display: none;

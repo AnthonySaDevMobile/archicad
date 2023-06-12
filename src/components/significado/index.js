@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import significado from '../../../public/significado.jpg'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
@@ -7,10 +7,38 @@ import construção from '../../../public/construção.jpg'
 import arquitetura from '../../../public/arquitetura.jpg'
 import interior from '../../../public/interior.jpg'
 import realização from '../../../public/realização.jpg'
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/services/firebaseConnection";
 
 export default function Significado() {
 
+    const significadoRef = collection(db, "significado");
+    const [significadoTexts, setSignificadoTexts] = useState([]);
+    const [significadoTexts2, setSignificadoTexts2] = useState([]);
+    const [significadoTexts3, setSignificadoTexts3] = useState([]);
+    const [significadoTexts4, setSignificadoTexts4] = useState([]);
     const [tabSelected, setTabSelected] = useState(0);
+
+    useEffect(() => {
+        const getSignificado = async () => {
+            const data = await getDocs(significadoRef);
+            setSignificadoTexts([
+                data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[0],
+            ]);
+            setSignificadoTexts2([
+                data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[1],
+            ]);
+            setSignificadoTexts3([
+                data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[2],
+            ]);
+            setSignificadoTexts4([
+                data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))[3],
+            ]);
+        };
+        getSignificado();
+    }, []);
+
+
 
     const handleTabSelect = (index) => {
         setTabSelected(index);
@@ -34,112 +62,140 @@ export default function Significado() {
             </div>
             <div className=' w-full -mt-24 md:-mt-36 z-20 absolute'>
                 <Tabs className="md:w-9/12 md:m-auto">
+
                     <TabList className="flex items-center  justify-between md:gap-0 gap-3">
-                        <Tab className="md:h-[500px] relative md:w-[300px] h-[150px]"
-                            onClick={() => handleTabSelect(0)}>
 
-                            <Image
-                                src={construção}
-                                style={{ objectPosition: 'center', objectFit: 'cover', height: '100%' }}
-                                quality={100}
-                                className='brightness-[.4]'
-                            />
-                            <div className='absolute bottom-10 w-full'>
-                                <div className='w-full flex flex-col items-center justify-center'>
-                                    <p className='text-white font-extrabold md:mb-5 md:text-base text-xs'>Construção</p>
-                                    <div
-                                        className={`${tabSelected === 0 ? 'flex' : 'hidden'
-                                            } flex-col md:text-base text-xs items-center justify-center md:mb-20 text-white font-extralight`}
-                                    >
-                                        <p>Planejamento</p>
-                                        <p>Projeto Civil</p>
-                                        <p>Outro</p>
+                    {significadoTexts.map((item) => (
+                            <Tab className="md:h-[500px] relative md:w-[300px] h-[150px]"
+                                onClick={() => handleTabSelect(0)}
+                                key={item.id}
+                                >
+                                <Image
+                                    src={arquitetura}
+                                    style={{ objectPosition: 'center', objectFit: 'cover', height: '100%' }}
+                                    quality={100}
+                                    className='brightness-[.4]'
+                                />
+                                <div className='absolute bottom-10 w-full'>
+                                    <div className='w-full flex flex-col items-center justify-center'>
+                                        <p className='text-white font-extrabold md:mb-5 md:text-base text-xs'>Arquitetura</p>
+                                        <div
+                                            className={`${tabSelected === 0 ? 'flex' : 'hidden'
+                                                } flex-col md:text-base text-xs items-center justify-center md:mb-20 text-white font-extralight`}
+                                        >
+                                            <p>{item.descricao1}</p>
+                                            <p>{item.descricao2}</p>
+                                            <p>{item.descricao3}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </Tab>
-                        <Tab className="md:h-[500px] relative md:w-[300px] h-[150px]"
-                            onClick={() => handleTabSelect(1)}
+                            </Tab>
+                        ))}
 
-                        >
-                            <Image
-                                src={arquitetura}
-                                style={{ objectPosition: 'center', objectFit: 'cover', height: '100%' }}
-                                quality={100}
-                                className='brightness-[.4]'
-                            />
-                            <div className='absolute bottom-10 w-full'>
-                                <div className='w-full flex flex-col items-center justify-center'>
-                                    <p className='text-white font-extrabold md:mb-5 md:text-base text-xs'>Arquitetura</p>
-                                    <div
-                                        className={`${tabSelected === 1 ? 'flex' : 'hidden'
-                                            } flex-col md:text-base text-xs items-center justify-center md:mb-20 text-white font-extralight`}
-                                    >
-                                        <p>Planejamento</p>
-                                        <p>Projeto Civil</p>
-                                        <p>Outro</p>
+                        {significadoTexts2.map((item) => (
+                            <Tab className="md:h-[500px] relative md:w-[300px] h-[150px]"
+                                onClick={() => handleTabSelect(1)}
+                                key={item.id}
+                                >
+                                <Image
+                                    src={construção}
+                                    style={{ objectPosition: 'center', objectFit: 'cover', height: '100%' }}
+                                    quality={100}
+                                    className='brightness-[.4]'
+                                />
+                                <div className='absolute bottom-10 w-full'>
+                                    <div className='w-full flex flex-col items-center justify-center'>
+                                        <p className='text-white font-extrabold md:mb-5 md:text-base text-xs'>Construção</p>
+                                        <div
+                                            className={`${tabSelected === 1 ? 'flex' : 'hidden'
+                                                } flex-col md:text-base text-xs items-center justify-center md:mb-20 text-white font-extralight`}
+                                        >
+                                            <p>{item.descricao1}</p>
+                                            <p>{item.descricao2}</p>
+                                            <p>{item.descricao3}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </Tab>
-                        <Tab className="md:h-[500px] relative md:w-[300px] h-[150px]"
-                            onClick={() => handleTabSelect(2)}>
-                            <Image
-                                src={interior}
-                                style={{ objectPosition: 'center', objectFit: 'cover', height: '100%' }}
-                                quality={100}
-                                className='brightness-[.4]'
-                            />
-                            <div className='absolute bottom-10 w-full'>
-                                <div className='w-full flex flex-col items-center justify-center'>
-                                    <p className='text-white font-extrabold md:mb-5 md:text-base text-xs'>Interior</p>
-                                    <div
-                                        className={`${tabSelected === 2 ? 'flex' : 'hidden'
-                                            } flex-col md:text-base text-xs items-center justify-center md:mb-20 text-white font-extralight`}
-                                    >
-                                        <p>Planejamento</p>
-                                        <p>Projeto Civil</p>
-                                        <p>Outro</p>
+                            </Tab>
+                        ))}
+
+                        {significadoTexts3.map((item) => (
+                            <Tab className="md:h-[500px] relative md:w-[300px] h-[150px]"
+                                onClick={() => handleTabSelect(2)}
+                                key={item.id}
+                                >
+                                <Image
+                                    src={interior}
+                                    style={{ objectPosition: 'center', objectFit: 'cover', height: '100%' }}
+                                    quality={100}
+                                    className='brightness-[.4]'
+                                />
+                                <div className='absolute bottom-10 w-full'>
+                                    <div className='w-full flex flex-col items-center justify-center'>
+                                        <p className='text-white font-extrabold md:mb-5 md:text-base text-xs'>Interior</p>
+                                        <div
+                                            className={`${tabSelected === 2 ? 'flex' : 'hidden'
+                                                } flex-col md:text-base text-xs items-center justify-center md:mb-20 text-white font-extralight`}
+                                        >
+                                            <p>{item.descricao1}</p>
+                                            <p>{item.descricao2}</p>
+                                            <p>{item.descricao3}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </Tab>
-                        <Tab className="md:h-[500px] relative md:w-[300px] h-[150px]"
-                            onClick={() => handleTabSelect(3)}>
-                            <Image
-                                src={realização}
-                                style={{ objectPosition: 'center', objectFit: 'cover', height: '100%' }}
-                                quality={100}
-                                className='brightness-[.4]'
-                            />
-                            <div className='absolute bottom-10 w-full'>
-                                <div className='w-full flex flex-col items-center justify-center'>
-                                    <p className='text-white font-extrabold md:mb-5 md:text-base text-xs'>Realização</p>
-                                    <div
-                                        className={`${tabSelected === 3 ? 'flex' : 'hidden'
-                                            } flex-col md:text-base text-xs items-center justify-center md:mb-20 text-white font-extralight`}
-                                    >
-                                        <p>Planejamento</p>
-                                        <p>Projeto Civil</p>
-                                        <p>Outro</p>
+                            </Tab>
+                        ))}
+
+                        {significadoTexts4.map((item) => (
+                            <Tab className="md:h-[500px] relative md:w-[300px] h-[150px]"
+                                onClick={() => handleTabSelect(3)}
+                                key={item.id}
+                                >
+                                <Image
+                                    src={realização}
+                                    style={{ objectPosition: 'center', objectFit: 'cover', height: '100%' }}
+                                    quality={100}
+                                    className='brightness-[.4]'
+                                />
+                                <div className='absolute bottom-10 w-full'>
+                                    <div className='w-full flex flex-col items-center justify-center'>
+                                        <p className='text-white font-extrabold md:mb-5 md:text-base text-xs'>Realização</p>
+                                        <div
+                                            className={`${tabSelected === 3 ? 'flex' : 'hidden'
+                                                } flex-col md:text-base text-xs items-center justify-center md:mb-20 text-white font-extralight`}
+                                        >
+                                            <p>{item.descricao1}</p>
+                                            <p>{item.descricao2}</p>
+                                            <p>{item.descricao3}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </Tab>
+                            </Tab>
+                        ))}
+
                     </TabList>
 
-                    <TabPanel className="text-center mt-10">
-                        <h2>Breve texto que resume esta criação CONSTRUÇÃO</h2>
+                    {significadoTexts.map((item)=>(
+                   <TabPanel className="text-center mt-10" key={item.id}>
+                        <h2>{item.detalhamento} </h2>
                     </TabPanel>
-                    <TabPanel className="text-center mt-10">
-                        <h2>Breve texto que resume esta criação ARQUITETURA</h2>
+                   ))}                  
+                    {significadoTexts2.map((item)=>(
+                    <TabPanel className="text-center mt-10" key={item.id}>
+                         <h2>{item.detalhamento}</h2>
+                     </TabPanel>
+                    ))}                   
+                    {significadoTexts3.map((item)=>(
+                        <TabPanel className="text-center mt-10" key={item.id}>
+                             <h2>{item.detalhamento}</h2>
+                         </TabPanel>
+                        ))}
+                   {significadoTexts4.map((item)=>(
+                   <TabPanel className="text-center mt-10" key={item.id}>
+                        <h2>{item.detalhamento}</h2>
                     </TabPanel>
-                    <TabPanel className="text-center mt-10">
-                        <h2>Breve texto que resume esta criação INTERIOR</h2>
-                    </TabPanel>
-                    <TabPanel className="text-center mt-10">
-                        <h2>Breve texto que resume esta criação REALIZAÇÃO</h2>
-                    </TabPanel>
+                   ))}
+               
                 </Tabs>
                 <div className=' mt-10 flex items-center justify-center'>
                     <button className='bg-bg-arch py-3 px-6 rounded-3xl font-extrabold'>

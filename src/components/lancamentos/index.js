@@ -1,19 +1,74 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { FaBuilding, FaHome } from 'react-icons/fa'
 import { TbBuildingSkyscraper } from 'react-icons/tb'
-import suiteMaster from '../../../public/suiteMaster.jpg'
-import fachadaDia from '../../../public/fachadaDia.jpg'
-import academia from '../../../public/academia.jpg'
-import cozinha from '../../../public/cozinha.jpg'
-import piscina from '../../../public/piscina.jpg'
-import Image from 'next/image'
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/services/firebaseConnection";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper";
 
 export default function Lancamentos() {
 
+    const lancamentosRef = collection(db, "lancamentos");
+    const [lancamentos, setLancamentos] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState("Tudo");
+    const [filtered, setFiltered] = useState(lancamentos);
     const [selectedButton, setSelectedButton] = useState('');
     const handleButtonClick = (buttonName) => {
         setSelectedButton(buttonName);
     };
+
+    useEffect(() => {
+        const getLancamentos = async () => {
+            const data = await getDocs(lancamentosRef);
+            const lancamentosData = data.docs.map((doc) => ({
+                ...doc.data(),
+                id: doc.id,
+            }));
+
+            setLancamentos(lancamentosData);
+            setFiltered(lancamentosData); // Definir os produtos filtrados com os dados iniciais
+        };
+        getLancamentos();
+    }, []);
+
+
+    useEffect(() => {
+        handleCategoryChange(selectedCategory); // Passar a categoria selecionada como argumento
+    }, [selectedCategory]); // Alterar o nome do estado de "produtos" para "selectedCategory"
+
+    const handleCategoryChange = (category) => {
+        setSelectedCategory(category);
+        const lancamentosFiltrados =
+            category === "Tudo"
+                ? lancamentos
+                : lancamentos.filter((item) => {
+                    if (category === "Outros") {
+                        // Filtrar os lancamentos com nomes diferentes das outras categorias
+                        return ![
+                            "Fachada",
+                            "Interior",
+                            "Conforto",
+                            "Identidade",
+                        ].includes(item.categoria);
+                    } else {
+                        // Filtrar os lancamentos pela categoria selecionada
+                        return item.categoria === category;
+                    }
+                });
+
+        setFiltered(lancamentosFiltrados);
+    };
+    function chunkArray(array, size) {
+        const chunks = [];
+        for (let i = 0; i < array.length; i += size) {
+            chunks.push(array.slice(i, i + size));
+        }
+        return chunks;
+    }
 
     return (
         <div className='bg-white h-fit w-full' id="lancamento">
@@ -42,123 +97,96 @@ export default function Lancamentos() {
                         <button
                             className={`decoration-bg-arch transition ease-in text-zinc-900 hover:border-y-4 hover:border-bg-arch decoration-bg-slide hover:transition hover:ease-in h-[40px] ${selectedButton === 'tudo' ? 'border-y-4 border-bg-arch' : ''
                                 }`}
-                            onClick={() => handleButtonClick('tudo')}
+                            onClick={() => {
+                                handleButtonClick('tudo')
+                                handleCategoryChange("Tudo")
+                            }}
                         >
                             Tudo
                         </button>
                         <button
                             className={`decoration-bg-arch transition ease-in text-zinc-900 hover:border-y-4 hover:border-bg-arch decoration-bg-slide hover:transition hover:ease-in h-[40px] ${selectedButton === 'fachada' ? 'border-y-4 border-bg-arch' : ''
                                 }`}
-                            onClick={() => handleButtonClick('fachada')}
+                            onClick={() => {
+                                handleButtonClick('fachada')
+                                handleCategoryChange("Fachada")
+                            }}
                         >
                             Fachada
                         </button>
                         <button
                             className={`decoration-bg-arch transition ease-in text-zinc-900 hover:border-y-4 hover:border-bg-arch decoration-bg-slide hover:transition hover:ease-in h-[40px] ${selectedButton === 'interior' ? 'border-y-4 border-bg-arch' : ''
                                 }`}
-                            onClick={() => handleButtonClick('interior')}
+                            onClick={() => {
+                                handleButtonClick('interior')
+                                handleCategoryChange("Interior")
+                            }}
                         >
                             Interior
                         </button>
                         <button
                             className={`decoration-bg-arch transition ease-in text-zinc-900 hover:border-y-4 hover:border-bg-arch decoration-bg-slide hover:transition hover:ease-in h-[40px] ${selectedButton === 'conforto' ? 'border-y-4 border-bg-arch' : ''
                                 }`}
-                            onClick={() => handleButtonClick('conforto')}
+                            onClick={() => {
+                                handleButtonClick('conforto')
+                                handleCategoryChange("Conforto")
+                            }}
                         >
                             Conforto
                         </button>
                         <button
                             className={`decoration-bg-arch transition ease-in text-zinc-900 hover:border-y-4 hover:border-bg-arch decoration-bg-slide hover:transition hover:ease-in h-[40px] ${selectedButton === 'identidade' ? 'border-y-4 border-bg-arch' : ''
                                 }`}
-                            onClick={() => handleButtonClick('identidade')}
+                            onClick={() => {
+                                handleButtonClick('identidade')
+                                handleCategoryChange("Identidade")
+                            }
+                            }
                         >
                             Identidade
                         </button>
                     </div>
                 </div>
-                <div className='w-9/12 m-auto mt-10 flex flex-col gap-8'>
-                    <div className='flex gap-5'>
-                        <div className='md:h-[500px] h-[200px] relative w-3/5'>
-                        <div className='bg-black w-full h-full absolute opacity-0 hover:opacity-90 transition-opacity ease-in delay-100'>
-                            <div className='text-white h-full items-center justify-center flex flex-col'>
-                            <p className='text-bg-arch text-sm opacity-100'>Suíte Master - Duplex</p>
-                            <p className='font-extrabold text-xl opacity-100'>Suíte Master</p>
-                             </div>
-                        </div>
-                            <Image
-                                src={suiteMaster}
-                                style={{ objectPosition: 'bottom', objectFit: 'cover', height: '100%' }}
-                                quality={100}
-                            />
-                            
-                        </div>
-                        <div className='md:h-[500px] h-[200px] relative w-2/5'>
-                        <div className='bg-black w-full h-full absolute opacity-0 hover:opacity-90 transition-opacity ease-in delay-100'>
-                            <div className='text-white h-full items-center justify-center flex flex-col'>
-                            <p className='text-bg-arch text-sm opacity-100'>Suíte Master - Duplex</p>
-                            <p className='font-extrabold text-xl opacity-100'>Suíte Master</p>
-                             </div>
-                        </div>
-                            <Image
-                                src={fachadaDia}
-                                style={{ objectPosition: 'bottom', objectFit: 'cover', height: '100%' }}
-                                quality={100}
-                            />
-                        </div>
-                    </div>
-                    <div className='flex gap-5'>
-                        <div className='md:h-[500px] h-[200px] relative w-2/5'>
-                        <div className='bg-black w-full h-full absolute opacity-0 hover:opacity-90 transition-opacity ease-in delay-100'>
-                            <div className='text-white h-full items-center justify-center flex flex-col'>
-                            <p className='text-bg-arch text-sm opacity-100'>Suíte Master - Duplex</p>
-                            <p className='font-extrabold text-xl opacity-100'>Suíte Master</p>
-                             </div>
-                        </div>
-                            <Image
-                                src={academia}
-                                style={{ objectPosition: 'bottom', objectFit: 'cover', height: '100%' }}
-                                quality={100}
-                            />
-                        </div>
-                        <div className='md:h-[500px] h-[200px] relative w-3/5'>
-                        <div className='bg-black w-full h-full absolute opacity-0 hover:opacity-90 transition-opacity ease-in delay-100'>
-                            <div className='text-white h-full items-center justify-center flex flex-col'>
-                            <p className='text-bg-arch text-sm opacity-100'>Suíte Master - Duplex</p>
-                            <p className='font-extrabold text-xl opacity-100'>Suíte Master</p>
-                             </div>
-                        </div>
-                            <Image
-                                src={cozinha}
-                                style={{ objectPosition: 'bottom', objectFit: 'cover', height: '100%' }}
-                                quality={100}
-                            />
-                        </div>
-                    </div>
-                    <div className='flex gap-5'>
-                        <div className='md:h-[500px] h-[200px] relative w-3/5'>
-                        <div className='bg-black w-full h-full absolute opacity-0 hover:opacity-90 transition-opacity ease-in delay-100'>
-                            <div className='text-white h-full items-center justify-center flex flex-col'>
-                            <p className='text-bg-arch text-sm opacity-100'>Suíte Master - Duplex</p>
-                            <p className='font-extrabold text-xl opacity-100'>Suíte Master</p>
-                             </div>
-                        </div>
-                            <Image
-                                src={piscina}
-                                style={{ objectPosition: 'bottom', objectFit: 'cover', height: '100%' }}
-                                quality={100}
-                            />
-                        </div>
-                        <div className='bg-zinc-600 md:h-[500px] h-[200px] relative w-2/5'>
-                        <div className='bg-black w-full h-full absolute opacity-0 hover:opacity-90 transition-opacity ease-in delay-100'>
-                            <div className='text-white h-full items-center justify-center flex flex-col'>
-                            <p className='text-bg-arch text-sm opacity-100'>Suíte Master - Duplex</p>
-                            <p className='font-extrabold text-xl opacity-100'>Suíte Master</p>
-                             </div>
-                        </div>
-                        </div>
-                    </div>
 
-                </div>
+                <Swiper
+                    pagination={{
+                        dynamicBullets: true,
+                    }}
+                    modules={[Pagination]}
+                    className="w-9/12 m-auto mt-10 flex flex-col gap-8"
+                >
+                    {chunkArray(filtered, 6).length === 0 ? (
+                        <p>Por enquanto não há nada aqui...</p>
+                    ) : (
+                        chunkArray(filtered, 6).map((grupo, index) => (
+                            <SwiperSlide key={index} className="flex gap-5">
+                                <div className="md:grid md:grid-cols-2 md:grid-rows-2 gap-x-10 md:gap-y-5">
+                                    {grupo.map((item) => (
+                                        <div className="md:h-[310px] h-[200px] relative md:mt-0 mt-3" key={item.id}>
+                                            <div className="bg-black w-full h-full absolute opacity-0 hover:opacity-90 transition-opacity ease-in delay-100">
+                                                <div className="text-white h-full items-center justify-center flex flex-col">
+                                                    <p className="text-bg-arch text-sm opacity-100">
+                                                        {item.nome} - {item.caracteristica}
+                                                    </p>
+                                                    <p className="font-extrabold text-xl opacity-100">
+                                                        {item.nome}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <img
+                                                src={item.imagem}
+                                                width="250"
+                                                height="250"
+                                                alt="Foto"
+                                                className="w-full h-full object-cover"
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
+                            </SwiperSlide>
+                        ))
+                    )}
+                </Swiper>
             </div>
         </div>
     )

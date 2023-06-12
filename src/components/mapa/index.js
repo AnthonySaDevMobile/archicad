@@ -40,13 +40,13 @@ export default function Mapa() {
           <div className="hidden md:flex md:flex-col  justify-center text-xs">
             <div className="flex md:gap-2">
               <Link href="https://www.google.com/maps/dir//Impresilk+Solu%C3%A7%C3%B5es+Visuais+-+Av.+Fel%C3%ADciano+Martins+de+Freitas,+127+-+Vila+Regina,+Montes+Claros+-+MG,+39400-207/@-16.7014315,-43.8750843,15z/data=!4m9!4m8!1m0!1m5!1m1!1s0x754ab5a9cf15555:0x647818a8b55dca40!2m2!1d-43.8594299!2d-16.7126121!3e0" target='_blank'>
-                <div className="bg-[#4b423d] w-20 h-24 flex flex-col items-center justify-center text-white gap-2">
+                <div className="bg-[#4b423d] w-14 text-center h-24 flex flex-col items-center justify-center text-white gap-2">
                   <FaRoute size={30} />
                   <p className="text-zinc-200">Rota</p>
                 </div>
               </Link>
               <Link href="https://www.google.com/maps/@-16.712691,-43.8593548,3a,75y,308.24h,88.74t/data=!3m7!1e1!3m5!1sTZR2bAi2to2PCxpzv7bo6Q!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fpanoid%3DTZR2bAi2to2PCxpzv7bo6Q%26cb_client%3Dmaps_sv.tactile.gps%26w%3D203%26h%3D100%26yaw%3D58.44444%26pitch%3D0%26thumbfov%3D100!7i16384!8i8192" target='_blank'>
-                <div className="bg-[#4b423d] w-20 h-24 flex flex-col items-center justify-center text-white gap-2">
+                <div className="bg-[#4b423d] w-14 text-center h-24 flex flex-col items-center justify-center text-white gap-2">
                   <FaStreetView size={30} />
                   <p className="text-zinc-200">Street View</p>
                 </div>
