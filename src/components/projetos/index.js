@@ -58,11 +58,9 @@ export default function Projetos() {
 
                     {projetos.map((item) => (
                         <SwiperSlide className='relative' key={item.id}>
-                            <div className=' md:h-[500px] '>
+                            <div className=' h-[500px] '>
                                 <img
                                     src={item.imagem}
-                                    width="250"
-                                    height="300"
                                     alt="Foto do projeto"
                                     className="w-full h-full object-cover"
                                 />

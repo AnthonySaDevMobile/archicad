@@ -18,20 +18,20 @@ export default function Valores() {
 
 
     return (
-        <div className='bg-bg-arch mt-10' id='valores'>
+        <div className='bg-bg-arch mt-10 ' id='valores'>
             {valores.map((item) => (
-                <div key={item.id} className='md:flex w-8/12 m-auto gap-5'>
-                    <div className=' md:w-1/3 py-6 flex flex-col gap-3'>
+                <div key={item.id} className='md:flex w-full m-auto gap-5 flex justify-around items-center'>
+                    <div className='py-6 flex flex-col items-center gap-3'>
                         <GiMountainCave color='white' size={28} />
                         <p className='font-bold'>Missão</p>
                         <p>{item.textoMissao}</p>
                     </div>
-                    <div className=' md:w-1/3 py-6 flex flex-col gap-3'>
+                    <div className='py-6 flex flex-col items-center gap-3'>
                         <FaEye color='white' size={28} />
                         <p className='font-bold'>Visão</p>
                         <p>{item.textoVisao}</p>
                     </div>
-                    <div className=' md:w-1/3 py-6 flex flex-col gap-3'>
+                    <div className='py-6 flex flex-col items-center gap-3'>
                         <MdDiamond color='white' size={28} />
                         <p className='font-bold'>Valores</p>
                         <p>{item.textoValores}</p>

@@ -136,7 +136,7 @@ function Footer() {
             <div className="bg-zinc-500 w-[118px] h-[110px] flex items-center justify-center object-cover"></div>
           </div>
           <p className="text-left mt-5">
-            Siga-nos <strong className="text-yellow-500">@impresilk</strong>
+            Siga-nos <strong className="text-yellow-500">@archicad</strong>
           </p>
         </div>
       </div>
