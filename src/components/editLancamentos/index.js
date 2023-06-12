@@ -59,7 +59,7 @@ export default function EditLancamentos() {
     setCaracteristica("");
     setCategoria("");
     setImageAvatarLancamentos(null);
-    setAvatarUrlLansetImageAvatarLancamentos("");
+
   }
 
   async function handleUpload() {

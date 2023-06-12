@@ -1,7 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { collection, getDocs, setDoc, doc } from "firebase/firestore";
 import { db, storage } from "@/services/firebaseConnection";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import {
+  collection,
+  doc,
+  getDocs, setDoc
+} from "firebase/firestore";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { useEffect, useState } from "react";
 import { FaUpload } from "react-icons/fa";
 
 export default function EditHome() {
@@ -10,10 +14,8 @@ export default function EditHome() {
   const quemSomosId = "sobre";
   const [imageAvatar, setImageAvatar] = useState(null)
   const [imageAvatarUrl, setImageAvatarUrl] = useState('')
-  const [imageAvatarUrlFirebase, setImageAvatarUrlFirebase]= useState("")
   const [imageAvatar2, setImageAvatar2] = useState(null)
   const [imageAvatarUrl2, setImageAvatarUrl2] = useState('')
-  const [imageAvatarUrlFirebase2, setImageAvatarUrlFirebase2]= useState("")
   const [quemSomos, setQuemSomos] = useState([])
   const [texto, setTexto] = useState("");
   const [texto2, setTexto2] = useState("");
@@ -76,50 +78,79 @@ export default function EditHome() {
   async function handleSave(e) {
     e.preventDefault();
     setTextButton("Enviando...");
-    const quemsomosRef = doc(db, "quemSomos", quemSomosId);
-    await handleUpload();
-    await handleUpload2();
+    const quemSomosRef = doc(db, "quemSomos", quemSomosId);
+    const imageUrl = await handleUpload();
+    const imageUrl2 = await handleUpload2();
     const updatedData = {
-      imagem1:imageAvatarUrlFirebase,
-      imagem2:imageAvatarUrlFirebase2,
+      imagem1: imageUrl || home.imagem,
+      imagem2: imageUrl2 || home.imagem,
       texto:texto,
       texto2:texto2,
       titulo:titulo,
       titulo2:titulo2,
     };
-    await setDoc(quemsomosRef, updatedData)
-      .then(() => {
-    
-      })
-      .catch((e) => {
-      
-      });
-    setTextButton("Enviado!");
+  
+  
+    try {
+      await setDoc(quemSomosRef, updatedData);
+      // Update successful
+      setTextButton("Enviado!");
+    } catch (error) {
+      // Handle error
+      console.error(error);
+    }
   }
-
+  
   async function handleUpload() {
     if (imageAvatarUrl !== null) {
       const imagesRef = ref(storage, `imagesQuemSomos/${imageAvatar.name}`);
-      await uploadBytes(imagesRef, imageAvatar).then((snapshot) => {
-      });
-      const url = await getDownloadURL(ref(storage, `imagesQuemSomos/${imageAvatar.name}`));
-      setImageAvatarUrlFirebase(url);
-    } else {
-      return null;
-    }
-  }
+      const uploadTask = uploadBytesResumable(imagesRef, imageAvatar);
 
+      await new Promise((resolve, reject) => {
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => { },
+          (error) => {
+            reject(error);
+          },
+          () => {
+            resolve();
+          }
+        );
+      });
+
+      const url = await getDownloadURL(imagesRef);
+      return url;
+    }
+
+    return null;
+  }
   async function handleUpload2() {
     if (imageAvatarUrl2 !== null) {
       const imagesRef = ref(storage, `imagesQuemSomos/${imageAvatar2.name}`);
-      await uploadBytes(imagesRef, imageAvatar).then((snapshot) => {
+      const uploadTask = uploadBytesResumable(imagesRef, imageAvatar2);
+
+      await new Promise((resolve, reject) => {
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => { },
+          (error) => {
+            reject(error);
+          },
+          () => {
+            resolve();
+          }
+        );
       });
-      const url = await getDownloadURL(ref(storage, `imagesQuemSomos/${imageAvatar2.name}`));
-      setImageAvatarUrlFirebase2(url);
-    } else {
-      return null;
+
+      const url = await getDownloadURL(imagesRef);
+      return url;
     }
+
+    return null;
   }
+
+ 
 
 
   return (
