@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import arquitetura from '../../../public/arquitetura.jpg';
-import fachada from '../../../public/fachadaDia.jpg';
+import dachada from '../../../public/fachadaDia.jpg';
 import interior from '../../../public/interior.jpg';
 import realização from '../../../public/realização.jpg';
 import significado from '../../../public/significado.jpg';
@@ -71,7 +71,7 @@ export default function Significado() {
                                 onClick={() => handleTabSelect(0)}
                                 key={item.id}
                                 >
-                                <img
+                                <Image
                                     src={arquitetura}
                                     alt='back'
                                     style={{ objectPosition: 'center', objectFit: 'cover', height: '100%' }}
@@ -99,8 +99,8 @@ export default function Significado() {
                                 onClick={() => handleTabSelect(1)}
                                 key={item.id}
                                 >
-                                <img
-                                    src={fachada}
+                                <Image
+                                    src={realização}
                                     alt='back'
                                     style={{ objectPosition: 'center', objectFit: 'cover', height: '100%' }}
                                     quality={100}
@@ -127,7 +127,7 @@ export default function Significado() {
                                 onClick={() => handleTabSelect(2)}
                                 key={item.id}
                                 >
-                                <img
+                                <Image
                                     src={interior}
                                     alt='back'
                                     style={{ objectPosition: 'center', objectFit: 'cover', height: '100%' }}
@@ -155,7 +155,7 @@ export default function Significado() {
                                 onClick={() => handleTabSelect(3)}
                                 key={item.id}
                                 >
-                                <img
+                                <Image
                                     src={realização}
                                     style={{ objectPosition: 'center', objectFit: 'cover', height: '100%' }}
                                     quality={100}
