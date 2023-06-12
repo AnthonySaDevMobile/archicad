@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import arquitetura from '../../../public/arquitetura.jpg';
-import construcao from '../../../public/construcao.jpg';
+import construcao from '../../../public/fachadaDia.jpg';
 import interior from '../../../public/interior.jpg';
 import realização from '../../../public/realização.jpg';
 import significado from '../../../public/significado.jpg';
