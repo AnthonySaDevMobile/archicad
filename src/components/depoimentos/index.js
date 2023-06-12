@@ -111,12 +111,12 @@ export default function Depoimentos() {
                     </SwiperSlide>
                 ))}
             </Swiper>
-            <div className='absolute z-30  top-0 w-full h-full'>
+            <div className='absolute top-0 w-full h-full'>
                 <div className='md:w-9/12  m-auto h-full flex justify-between'>
-                    <div className='flex z-20 items-center justify-center'>
+                    <div className='flex z-40 items-center justify-center'>
                         <button ref={prevRef} className=" cursor-pointer bg-bg-arch w-fit h-fit p-4 rounded-full"> <FaArrowLeft size={18} /></button>
                     </div>
-                    <div className='cursor-pointer z-20 flex items-center justify-center'>
+                    <div className='cursor-pointer z-40 flex items-center justify-center'>
                         <button ref={nextRef} className=" cursor-pointer bg-bg-arch w-fit h-fit p-4 rounded-full"> <FaArrowRight size={18} /></button>
                     </div>
                 </div>
