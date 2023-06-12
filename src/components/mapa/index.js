@@ -1,15 +1,14 @@
-import React from 'react'
+import Image from 'next/image';
+import Link from 'next/link';
 import {
   FaRoute,
   FaStar,
   FaStarHalf,
   FaStreetView,
 } from "react-icons/fa";
-import { FiMapPin } from 'react-icons/fi'
-import { MdOutlineEmail, MdOutlineCall } from 'react-icons/md'
-import Image from 'next/image';
-import mapa from '../../../public/mapa.png'
-import Link from 'next/link';
+import { FiMapPin } from 'react-icons/fi';
+import { MdOutlineCall, MdOutlineEmail } from 'react-icons/md';
+import mapa from '../../../public/mapa.png';
 export default function Mapa() {
 
   return (
@@ -39,20 +38,20 @@ export default function Mapa() {
 
           <div className="hidden md:flex md:flex-col  justify-center text-xs">
             <div className="flex md:gap-2">
-              <Link href="https://www.google.com/maps/dir//Impresilk+Solu%C3%A7%C3%B5es+Visuais+-+Av.+Fel%C3%ADciano+Martins+de+Freitas,+127+-+Vila+Regina,+Montes+Claros+-+MG,+39400-207/@-16.7014315,-43.8750843,15z/data=!4m9!4m8!1m0!1m5!1m1!1s0x754ab5a9cf15555:0x647818a8b55dca40!2m2!1d-43.8594299!2d-16.7126121!3e0" target='_blank'>
+              <Link href="https://www.google.com/maps/dir//ArchiCAD+Construtora+-+n%C2%BA,+R.+Santa+Maria,+182+-+sala+05%2F06+-+Centro,+Montes+Claros+-+MG,+39400-115/@-16.7204515,-43.8682803,19z/data=!4m9!4m8!1m0!1m5!1m1!1s0xab5369e7d02c71:0xaddebd641b58c187!2m2!1d-43.8682485!2d-16.7203103!3e0?entry=ttu" target='_blank'>
                 <div className="bg-[#4b423d] w-14 text-center h-24 flex flex-col items-center justify-center text-white gap-2">
                   <FaRoute size={30} />
                   <p className="text-zinc-200">Rota</p>
                 </div>
               </Link>
-              <Link href="https://www.google.com/maps/@-16.712691,-43.8593548,3a,75y,308.24h,88.74t/data=!3m7!1e1!3m5!1sTZR2bAi2to2PCxpzv7bo6Q!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fpanoid%3DTZR2bAi2to2PCxpzv7bo6Q%26cb_client%3Dmaps_sv.tactile.gps%26w%3D203%26h%3D100%26yaw%3D58.44444%26pitch%3D0%26thumbfov%3D100!7i16384!8i8192" target='_blank'>
+              <Link href="https://www.google.com/maps/@-16.7204515,-43.8682803,3a,75y,12.64h,90.43t/data=!3m6!1e1!3m4!1sDT5y0jjEco-cbPZTNVIrIQ!2e0!7i16384!8i8192?entry=ttu" target='_blank'>
                 <div className="bg-[#4b423d] w-14 text-center h-24 flex flex-col items-center justify-center text-white gap-2">
                   <FaStreetView size={30} />
                   <p className="text-zinc-200">Street View</p>
                 </div>
               </Link>
             </div>
-            <Link href="https://www.google.com/maps/place/Impresilk+Solu%C3%A7%C3%B5es+Visuais/@-16.7126069,-43.8620048,17z/data=!3m1!4b1!4m6!3m5!1s0x754ab5a9cf15555:0x647818a8b55dca40!8m2!3d-16.7126121!4d-43.8594299!16s%2Fg%2F1vhkkrhg" target='_blank'>
+            <Link href="https://www.google.com/maps/place/ArchiCAD+Construtora/@-16.7203051,-43.8708234,17z/data=!3m1!4b1!4m6!3m5!1s0xab5369e7d02c71:0xaddebd641b58c187!8m2!3d-16.7203103!4d-43.8682485!16s%2Fg%2F11b6hwvngd?entry=ttu" target='_blank'>
               <button className="bg-white mt-5 rounded-xl font-semibold text-[#4b423d] px-6 py-4">VER NO MAPA</button>
             </Link>
           </div>
