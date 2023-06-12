@@ -5,7 +5,6 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { A11y, Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
-import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import cozinha from '../../../public/cozinha.jpg';
 import Link from "next/link";
@@ -31,16 +30,15 @@ export default function Depoimentos() {
         <div className='relative h-fit' id="depoimentos">
 
 <Swiper
-                centeredSlides={false}
-                loop={true}
-                spaceBetween={10}
-                slidesPerView={1}
-                modules={[Navigation, Pagination, A11y]}
-                navigation={{
-                    prevEl: prevRef.current,
-                    nextEl: nextRef.current,
-                }}
-                onInit={() => setInit(true)}
+                  slidesPerView={1}
+                  loop={true}
+                  centeredSlides={true}
+                  modules={[Navigation, Autoplay]}
+                  navigation={{
+                      prevEl: prevRef.current,
+                      nextEl: nextRef.current,
+                  }}
+                  onInit={() => setInit(true)}
                 className='mt-72 md:mt-52 md:h-1/4 h-fit'
             >
                 {depoimentos.map((item) => (
