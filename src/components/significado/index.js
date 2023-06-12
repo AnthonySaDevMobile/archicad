@@ -1,14 +1,14 @@
-import Image from 'next/image'
-import React, { useState, useEffect } from 'react'
-import significado from '../../../public/significado.jpg'
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
-import construção from '../../../public/construção.jpg'
-import arquitetura from '../../../public/arquitetura.jpg'
-import interior from '../../../public/interior.jpg'
-import realização from '../../../public/realização.jpg'
-import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/services/firebaseConnection";
+import { collection, getDocs } from "firebase/firestore";
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
+import arquitetura from '../../../public/arquitetura.jpg';
+import construcao from '../../../public/construcao.jpg';
+import interior from '../../../public/interior.jpg';
+import realização from '../../../public/realização.jpg';
+import significado from '../../../public/significado.jpg';
 
 export default function Significado() {
 
@@ -49,6 +49,7 @@ export default function Significado() {
             <div className='relative md:h-3/5 h-[300px]'>
                 <Image
                     src={significado}
+                    alt='back'
                     style={{ objectPosition: 'top', objectFit: 'cover', height: '100%' }}
                     quality={100}
                 />
@@ -72,6 +73,7 @@ export default function Significado() {
                                 >
                                 <Image
                                     src={arquitetura}
+                                    alt='back'
                                     style={{ objectPosition: 'center', objectFit: 'cover', height: '100%' }}
                                     quality={100}
                                     className='brightness-[.4]'
@@ -98,7 +100,8 @@ export default function Significado() {
                                 key={item.id}
                                 >
                                 <Image
-                                    src={construção}
+                                    src={construcao}
+                                    alt='back'
                                     style={{ objectPosition: 'center', objectFit: 'cover', height: '100%' }}
                                     quality={100}
                                     className='brightness-[.4]'
@@ -126,6 +129,7 @@ export default function Significado() {
                                 >
                                 <Image
                                     src={interior}
+                                    alt='back'
                                     style={{ objectPosition: 'center', objectFit: 'cover', height: '100%' }}
                                     quality={100}
                                     className='brightness-[.4]'
