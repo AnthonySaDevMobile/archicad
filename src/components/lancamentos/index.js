@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react'
-import { FaBuilding, FaHome } from 'react-icons/fa'
-import { TbBuildingSkyscraper } from 'react-icons/tb'
-import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/services/firebaseConnection";
+import { collection, getDocs } from "firebase/firestore";
+import { useEffect, useState } from 'react';
+import { FaBuilding, FaHome } from 'react-icons/fa';
+import { TbBuildingSkyscraper } from 'react-icons/tb';
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
+import { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper";
 
-export default function Lancamentos() {
+export default function Lancamentos({display}) {
 
     const lancamentosRef = collection(db, "lancamentos");
     const [lancamentos, setLancamentos] = useState([]);
@@ -72,7 +72,7 @@ export default function Lancamentos() {
 
     return (
         <div className='bg-white h-fit w-full' id="lancamento">
-            <div className='w-full text-center md:text-left flex md:flex-row flex-col gap-4 mt-10 items-center justify-around'>
+            <div className='w-full text-center md:text-left flex md:flex-row flex-col gap-4 mt-10 items-center justify-around' style={{display:display}}>
                 <div className='px-24 items-center flex flex-col gap-2'>
                     <FaBuilding size={50} color='#e4bea7' />
                     <h1 className='font-extrabold text-lg'>Edificações</h1>
@@ -91,8 +91,8 @@ export default function Lancamentos() {
             </div>
             <div>
                 <div className='mt-10 w-full flex flex-col items-center justify-center'>
-                    <h1 className='font-extrabold text-2xl'>Premium Residence</h1>
-                    <p className='text-zinc-400 font-semibold'>Terezinha Pires</p>
+                    <h1 className='font-extrabold text-2xl' style={{display: display}}>Premium Residence</h1>
+                    <p className='text-zinc-400 font-semibold' style={{display:display}}>Terezinha Pires</p>
                     <div className=' mt-10 text-xs md:text-base flex justify-around w-full md:w-7/12 font-semibold'>
                         <button
                             className={`decoration-bg-arch transition ease-in text-zinc-900 hover:border-y-4 hover:border-bg-arch decoration-bg-slide hover:transition hover:ease-in h-[40px] ${selectedButton === 'tudo' ? 'border-y-4 border-bg-arch' : ''

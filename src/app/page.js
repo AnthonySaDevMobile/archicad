@@ -29,7 +29,7 @@ export default function Home() {
       <HomeComponent/>
 
         {/* LANÇAMENTO */}
-        <Lancamentos />
+        <Lancamentos display={'flex'} />
         {/* SIGNIFICADO */}
         <Significado  />
         {/* DEPOIMENTOS */}

@@ -14,7 +14,6 @@ export default function EditProjetos() {
 
   const projetosRef = collection(db, "projetos");
   const [avatarUrlProjetos, setAvatarUrlProjetos] = useState("");
-  const [avatarUrlProjetosFirebase, setAvatarUrlProjetosFirebase] = useState("");
   const [imageAvatarProjetos, setImageAvatarProjetos] = useState(null);
   const [projetos, setProjetos] = useState([]);
   const [dia, setDia] = useState("");
@@ -23,6 +22,7 @@ export default function EditProjetos() {
   const [entregue, setEntregue] = useState("");
   const [endereco, setEndereco] = useState("");
   const [caracteristica, setCaracteristica] = useState("");
+  const [descricao, setDescricao] = useState("");
   const [textButton, setTextButton] = useState("Enviar alterações");
 
   useEffect(() => {
@@ -53,6 +53,7 @@ export default function EditProjetos() {
       entregue: entregue,
       mes: mes,
       nome: nome,
+      descricao: descricao
     });
 
     setTextButton("Enviado!");
@@ -119,7 +120,9 @@ export default function EditProjetos() {
     }
   }
 
-
+  const handleDescricao = (e) => {
+    setDescricao(e.target.value);
+};
   return (
     <div className="py-10 flex flex-col items-center justify-center">
       <h1 className="text-3xl">Projetos</h1>
@@ -200,6 +203,14 @@ export default function EditProjetos() {
               onChange={(e) => setEndereco(e.target.value)}
               className="p-2 rounded"
             ></input>
+            <textarea
+              type="text"
+              required
+              className="p-2 resize-none border-2 rounded-lg h-[200px] border-gray-400"
+              placeholder="Descrição:"
+              onChange={handleDescricao}
+              value={descricao}
+            />
           </div>
         </div>
         <button className="text-center bg-bg-arch px-14 py-3 rounded-3xl text-white text-sm mt-10  font-bold sm:drop-shadow-3xl drop-shadow-md mb-10">

@@ -98,12 +98,12 @@ export default function Depoimentos() {
                                     />
                                 </div>
                                 <div className="md:hidden w-1/5 flex justify-start items-end">
-                                <img
+                                    <img
                                         src={item.imagem}
                                         style={{ objectPosition: 'bottom', objectFit: 'contain' }}
                                         className='h-fit bg-bg-arch rounded-full border-4 border-black'
                                         alt='home'
-                                    /> 
+                                    />
                                 </div>
                             </div>
 
