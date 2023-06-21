@@ -64,7 +64,7 @@ export default function Significado() {
             <div className=' w-full -mt-24 md:-mt-36 z-20 absolute'>
                 <Tabs className="md:w-9/12 md:m-auto">
 
-                    <TabList className="flex items-center  justify-between md:gap-0 gap-3">
+                    <TabList className="flex items-center text-center justify-between md:gap-0 gap-3">
 
                     {significadoTexts.map((item) => (
                             <Tab className="md:h-[500px] relative md:w-[300px] h-[150px]"
@@ -87,7 +87,7 @@ export default function Significado() {
                                         >
                                             <p>{item.descricao1}</p>
                                             <p>{item.descricao2}</p>
-                                            <p>{item.descricao3}</p>
+                                            <p className="hidden md:flex">{item.descricao3}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -115,7 +115,7 @@ export default function Significado() {
                                         >
                                             <p>{item.descricao1}</p>
                                             <p>{item.descricao2}</p>
-                                            <p>{item.descricao3}</p>
+                                            <p className="hidden md:flex">{item.descricao3}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -143,7 +143,7 @@ export default function Significado() {
                                         >
                                             <p>{item.descricao1}</p>
                                             <p>{item.descricao2}</p>
-                                            <p>{item.descricao3}</p>
+                                            <p className="hidden md:flex">{item.descricao3}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -170,7 +170,7 @@ export default function Significado() {
                                         >
                                             <p>{item.descricao1}</p>
                                             <p>{item.descricao2}</p>
-                                            <p>{item.descricao3}</p>
+                                            <p className="hidden md:flex">{item.descricao3}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -181,22 +181,22 @@ export default function Significado() {
 
                     {significadoTexts.map((item)=>(
                    <TabPanel className="text-center mt-10" key={item.id}>
-                        <h2>{item.detalhamento} </h2>
+                        <h2 className="text-[#737373]">{item.detalhamento} </h2>
                     </TabPanel>
                    ))}                  
                     {significadoTexts2.map((item)=>(
                     <TabPanel className="text-center mt-10" key={item.id}>
-                         <h2>{item.detalhamento}</h2>
+                         <h2 className="text-[#737373]">{item.detalhamento}</h2>
                      </TabPanel>
                     ))}                   
                     {significadoTexts3.map((item)=>(
                         <TabPanel className="text-center mt-10" key={item.id}>
-                             <h2>{item.detalhamento}</h2>
+                             <h2 className="text-[#737373]">{item.detalhamento}</h2>
                          </TabPanel>
                         ))}
                    {significadoTexts4.map((item)=>(
                    <TabPanel className="text-center mt-10" key={item.id}>
-                        <h2>{item.detalhamento}</h2>
+                        <h2 className="text-[#737373]">{item.detalhamento}</h2>
                     </TabPanel>
                    ))}
                

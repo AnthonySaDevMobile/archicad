@@ -14,8 +14,8 @@ export default function ProjectPage({ params }) {
   const projetosRef = collection(db, "projetos");
   const [projetos, setProjetos] = useState([])
   const [projetoSelecionado, setProjetoSelecionado] = useState([])
-  const isMobile = useMediaQuery({ maxWidth: 767 });
-  const [slidesPerView, setSlidesPerView] = useState(3);
+  
+
 
   useEffect(() => {
     const getProjetos = async () => {
@@ -35,13 +35,6 @@ export default function ProjectPage({ params }) {
 
 
 
-  useEffect(() => {
-    if (isMobile) {
-      setSlidesPerView(1);
-    } else {
-      setSlidesPerView(3);
-    }
-  }, [isMobile]);
 
   return (
     <div>
@@ -68,7 +61,7 @@ export default function ProjectPage({ params }) {
       ))}
       <Lancamentos display={'none'}/>
       <Significado/>
-      <div className='mt-32'>
+      <div className='pt-[250px]'>
       <Projetos/>
       </div>
       <Footer/>

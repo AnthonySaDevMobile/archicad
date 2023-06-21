@@ -2,17 +2,16 @@ import { db } from "@/services/firebaseConnection";
 import { collection, getDocs } from "firebase/firestore";
 import Link from "next/link";
 import { useEffect, useRef, useState } from 'react';
+import { BsClock, BsPinMap } from 'react-icons/bs';
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { BsClock, BsPinMap } from 'react-icons/bs'
-import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from "react-responsive";
 import { Autoplay, Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 export default function Projetos() {
-    const [slidesPerView, setSlidesPerView] = useState(4);
-    const isMobile = useMediaQuery({ maxWidth: 767 });
+    const isMobile = useMediaQuery({ maxWidth: '768px' });
     const prevRef = useRef(null);
     const nextRef = useRef(null);
     const projetosRef = collection(db, "projetos");
@@ -26,13 +25,7 @@ export default function Projetos() {
         getProjetos();
     }, []);
 
-    useEffect(() => {
-        if (isMobile) {
-            setSlidesPerView(1);
-        } else {
-            setSlidesPerView(3);
-        }
-    }, [isMobile]);
+  
 
     const toggleSlide = (id) => {
         setProjetos((prevProjetos) =>
@@ -43,18 +36,16 @@ export default function Projetos() {
                 return projeto;
             })
         );
+      
     };
 
     return (
-        <div className="w-full relative flex items-center justify-center h-[80vh] bg-zinc-100" id="projetos">
-            <div className='relative md:w-9/12  md:m-auto md: mt-10 text-center  h-fit'>
+        <div className="w-full relative flex items-center justify-center h-[800px] bg-zinc-100" id="projetos">
+            <div className='relative w-10/12  m-auto md: mt-10 text-center  h-fit'>
                 <p className='font-extrabold text-2xl '>Nossos Projetos</p>
                 <p className='text-zinc-400'>Veja nosso portfólio</p>
                 <Swiper
-                    slidesPerView={slidesPerView}
-                    loop={true}
-                    centeredSlides={true}
-                    spaceBetween={50}
+                    slidesPerView={isMobile ? 1 : 3 }
                     modules={[Navigation, Autoplay]}
                     navigation={{
                         prevEl: prevRef.current,
@@ -64,9 +55,9 @@ export default function Projetos() {
                 >
                     {projetos.map((item) => (
                         <SwiperSlide className='relative pb-10' key={item.id}>
-                            <div className='h-[500px]'>
+                            <div className='h-[550px]'>
                                 <img
-                                    onClick={() => toggleSlide(item.id)}
+                                    onClick={() => {toggleSlide(item.id)}}
                                     src={item.imagem}
                                     alt="Foto do projeto"
                                     className="w-full h-full object-cover"
@@ -82,7 +73,7 @@ export default function Projetos() {
                             {!item.isOpen ? (
                                 <></>
                             ) : (
-                                <div className="bg-white text-left h-fit py-14 px-8 z-30 absolute -bottom-4 -left-10 w-fit">
+                                <div className="bg-white text-left h-fit py-14 px-8 z-30 absolute -bottom-4 md:left-16 left-0 w-full  md:w-fit">
                                     <div className="h-full flex flex-col items-start justify-around gap-10">
                                         <h1 className="font-bold text-xl">{item.nome}</h1>
                                         <p className="font-semibold text-zinc-600">{item.caracteristica}</p>
@@ -108,12 +99,12 @@ export default function Projetos() {
                     ))}
                 </Swiper>
 
-                <div className='absolute top-0 w-full  h-full'>
+                <div className='absolute top-0 w-full  h-full' >
                     <div className='h-full flex justify-between'>
-                        <div ref={prevRef} className='flex z-20 items-center justify-center'>
+                        <div ref={prevRef} className='flex z-20 items-center justify-center md:-ml-20 -ml-9'>
                             <FaArrowLeft className="  cursor-pointer bg-bg-arch w-fit h-fit p-4 rounded-full" size={18} color='white' />
                         </div>
-                        <div ref={nextRef} className='z-20 flex items-center justify-center'>
+                        <div ref={nextRef} className='z-20 flex items-center justify-center md:-mr-20 -mr-9'>
                             <FaArrowRight className=" cursor-pointer bg-bg-arch w-fit h-fit p-4 rounded-full" size={18} color='white' />
                         </div>
                     </div>
